@@ -1,9 +1,8 @@
-doctype html
-html
-  head
-    meta(charset='UTF-8')
-    title CSSアーキテクチャ勉強会
-    link(href="/css/main.css", rel="stylesheet")
-  body
-    h1 Hello, CSS
-    p CSS勉強会用サンプルページです。
+extends layout/_layout
+
+block vars
+  - title = "ページタイトル"
+
+block contents
+  h1 Hello, CSS
+  p CSS勉強会用サンプルページです。
