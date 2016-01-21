@@ -3,7 +3,8 @@ var jade = require('gulp-jade');
 var sass = require('gulp-sass');
 var webserver = require('gulp-webserver');
 var plumber = require('gulp-plumber');
-
+var sassGlob = require('gulp-sass-glob');
+ 
 // 開発用webサーバ起動タスク
 gulp.task('serve', function () {
   gulp.src('dest')
@@ -16,8 +17,9 @@ gulp.task('serve', function () {
 
 // scssファイルのコンパイル用タスク
 gulp.task('sass', () => {
-  gulp.src(['./src/scss/**/*.scss', '!./src/scss/**/_*.scss'])
+  gulp.src(['./src/scss/main.scss'])
     .pipe(plumber())
+    .pipe(sassGlob())
     .pipe(sass())
     .pipe(gulp.dest('./dest/css/'));
 });
@@ -35,8 +37,8 @@ gulp.task('jade', () => {
 // ファイル変更監視タスク
 gulp.task('watch', function(){
   // ファイルが変更されたらsass/jadeコンパイルタスクを実行
-  gulp.watch('./src/scss/*.scss', ['sass'])
-  gulp.watch('./src/jade/*.jade', ['jade'])
+  gulp.watch('./src/scss/**/*.scss', ['sass'])
+  gulp.watch('./src/jade/**/*.jade', ['jade'])
 });
 
 gulp.task('default', ['sass', 'jade', 'watch', 'serve']);
