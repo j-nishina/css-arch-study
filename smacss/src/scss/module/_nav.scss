@@ -1,4 +1,28 @@
-.nav-logo img {
-  width: 248px;
-  height: 78px;
+.nav {
+  & .nav-logo {
+    float: left;
+
+    & img {
+      width: 248px;
+      height: 78px;
+    }
+  }
+
+  & .nav-menu {
+    list-style: none;
+    float: right;
+
+    &:after {
+      @extend .clearfix;
+    }
+  }
+
+  & .nav-menu li {
+    margin: auto 5px;
+    float: left;
+  }
+
+  &:after {
+    @extend .clearfix;
+  }
 }
