@@ -1,0 +1,13 @@
+.promo {
+  text-align: center;
+  margin: 150px auto;
+  text-shadow: 1px 1px 3px #000;  
+
+  & .promo-word {
+    font-size: 48px;
+  }
+
+  & .tagline {
+    font-size: 32px;
+  }
+}
