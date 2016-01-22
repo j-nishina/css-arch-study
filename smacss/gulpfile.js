@@ -34,11 +34,20 @@ gulp.task('jade', () => {
     .pipe(gulp.dest('./dest/'));
 });
 
-// ファイル変更監視タスク
-gulp.task('watch', function(){
-  // ファイルが変更されたらsass/jadeコンパイルタスクを実行
-  gulp.watch('./src/scss/**/*.scss', ['sass'])
-  gulp.watch('./src/jade/**/*.jade', ['jade'])
+// imageファイルのコピータスク
+gulp.task('img', () => {
+  gulp.src(['./src/img/**/*']).pipe(gulp.dest('./dest/img/'));
 });
 
-gulp.task('default', ['sass', 'jade', 'watch', 'serve']);
+// ビルドタスク
+gulp.task('build', ['sass', 'jade', 'img']);
+
+// ファイル変更監視タスク
+gulp.task('watch', () => {
+  // ファイルが変更されたらsass/jade/imgタスクを実行
+  gulp.watch('./src/scss/**/*.scss', ['sass'])
+  gulp.watch('./src/jade/**/*.jade', ['jade'])
+  gulp.watch('./src/img/**/*', ['img'])
+});
+
+gulp.task('default', ['build', 'watch', 'serve']);
